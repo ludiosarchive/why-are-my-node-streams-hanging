@@ -141,7 +141,8 @@ You can use it with something like:
 Other tips
 ===
 
-`streamA.pipe(streamB)` is broken because it [doesn't forward errors](http://grokbase.com/t/gg/nodejs/12bwd4zm4x/should-stream-pipe-forward-errors),
+`streamA.pipe(streamB)` is broken because it [doesn't forward errors](http://grokbase.com/t/gg/nodejs/12bwd4zm4x/should-stream-pipe-forward-errors)
+[(bug)](https://github.com/nodejs/readable-stream/issues/129),
 which is not completely obvious in [the documentation](https://nodejs.org/api/stream.html#stream_readable_pipe_destination_options).
 You really want to forward errors.  Use a `pipeWithErrors` function instead of `stream.pipe`:
 
