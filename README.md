@@ -87,12 +87,16 @@ Less-buggy code with the missing line added:
 	}
 ```
 
+### You're piping an already-ended stream
+
+See the next section for an example.
+
 
 ### You're using a buggy library
 
-If you tell [google-api-nodejs-client](https://github.com/google/google-api-nodejs-client) to upload a stream, the library might pipe your stream into the oauth2 token refresh request instead of the actual API request: https://github.com/google/google-api-nodejs-client/issues/260
+If you tell [google-api-nodejs-client](https://github.com/google/google-api-nodejs-client) to upload a stream, the library might pipe your stream into the oauth2 token refresh request instead of the actual API request: https://github.com/google/google-api-nodejs-client/issues/260.  It will then try to pipe the already-ended stream into the API request, which will hang forever.
 
-You can "patch" it by subclassing the `OAuth2` implementation:
+You can "patch" the library by subclassing the `OAuth2` implementation:
 
 ```js
 const google = require('googleapis');
