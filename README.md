@@ -1,9 +1,9 @@
 Why are my node streams hanging / not ending / losing data?
 ===
 
-They might be hanging because:
+This might be happening because:
 
-### You're returning a stream to a user, but you added a 'data' handler to it without also pausing it
+### You're returning a stream to the caller, but you added a 'data' handler to it without also pausing it
 
 Attaching a 'data' handler puts the stream into flowing mode.  If the caller doesn't immediately (in the current tick) attach data/end handlers, they'll start losing data and possibly the 'end' event.
 
