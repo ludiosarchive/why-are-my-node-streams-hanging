@@ -41,6 +41,11 @@ https://nodejs.org/api/stream.html#stream_event_end
 https://nodejs.org/api/stream.html#stream_event_finish - talks about the "`end()` method", which has nothing to do with the 'end' event!
 
 
+### You're not handling the 'error' event
+
+An 'error' event can also end a Readable or finish a Writable, so you need to handle it.
+
+
 ### One or more cases forget to call `callback()` in your stream `Transform`
 
 Your `_transform` and `_flush` implementations need to call `callback()`, optionally with an error or data, in all cases.  Not necessarily within the same tick, but it must be called.
